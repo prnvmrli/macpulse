@@ -5,6 +5,7 @@ MacPulse is a free, open-source **CPU and GPU monitor for macOS**. It shows proc
 It is a lightweight Swift and SwiftUI system monitor for Apple Silicon Macs, Intel Macs, and compatible accelerated Hackintosh systems. MacPulse has no analytics, no advertisements, no account, and no background network requests.
 
 <p align="center">
+  <img src="docs/images/logo.png" width="110" alt="MacPulse Logo" /><br><br>
   <sub>Universal application for Apple Silicon and Intel Macs · macOS 13 or newer</sub>
 </p>
 
