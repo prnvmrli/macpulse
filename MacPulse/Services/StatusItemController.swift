@@ -3,13 +3,12 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class StatusItemController: NSObject, NSPopoverDelegate {
+final class StatusItemController: NSObject, NSMenuDelegate {
     private let monitor: MonitorStore
     private let onQuit: () -> Void
 
-    private let popover = NSPopover()
+    private let menu = NSMenu()
     private var statusItem: NSStatusItem?
-    private var eventMonitor: Any?
     private var cancellables = Set<AnyCancellable>()
     private var lastTitleUpdate = Date.distantPast
     private var lastRenderedTitle = ""
@@ -22,15 +21,11 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
         self.onQuit = onQuit
         super.init()
 
-        popover.behavior = .transient
-        popover.animates = true
-        popover.contentSize = NSSize(width: 228, height: 160)
-        popover.delegate = self
-
+        setupMenu()
         installStatusItem()
 
         monitor.$snapshot
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] snapshot in
                 self?.updatePresentation(snapshot: snapshot)
             }
@@ -39,68 +34,42 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
 
     func showPopover() {
         guard let button = statusItem?.button else { return }
-
-        if popover.isShown {
-            popover.performClose(nil)
-        } else {
-            if popover.contentViewController == nil {
-                popover.contentViewController = NSHostingController(
-                    rootView: DashboardView(
-                        monitor: monitor,
-                        onQuit: onQuit
-                    )
-                )
-            }
-            monitor.setDashboardVisible(true)
-
-            let anchorRect = positioningRect(for: button)
-            popover.show(relativeTo: anchorRect, of: button, preferredEdge: .minY)
-
-            NSApp.activate(ignoringOtherApps: true)
-            popover.contentViewController?.view.window?.makeKey()
-
-            startEventMonitor()
-        }
+        statusItem?.menu?.popUp(positioning: nil, at: NSPoint(x: 0, y: button.bounds.height), in: button)
     }
 
-    func popoverDidClose(_ notification: Notification) {
-        stopEventMonitor()
+    func menuWillOpen(_ menu: NSMenu) {
+        monitor.setDashboardVisible(true)
+    }
+
+    func menuDidClose(_ menu: NSMenu) {
         monitor.setDashboardVisible(false)
-        popover.contentViewController = nil
     }
 
-    private func positioningRect(for button: NSStatusBarButton) -> NSRect {
-        var rect = button.bounds
-        let windowHeight = button.window?.frame.height ?? button.bounds.height
-        let verticalPadding = max(0, (windowHeight - button.bounds.height) / 2)
-        // Offset downwards by the vertical padding plus a 2pt margin so it cleanly clears the menu bar
-        rect.origin.y += verticalPadding + 2
-        return rect
-    }
+    private func setupMenu() {
+        menu.removeAllItems()
+        menu.delegate = self
 
-    private func startEventMonitor() {
-        guard eventMonitor == nil else { return }
-        eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
-            guard let self, self.popover.isShown else { return }
-            self.popover.performClose(nil)
-        }
-    }
-
-    private func stopEventMonitor() {
-        if let monitor = eventMonitor {
-            NSEvent.removeMonitor(monitor)
-            eventMonitor = nil
-        }
+        let customItem = NSMenuItem()
+        let dashboard = DashboardView(
+            monitor: monitor,
+            onQuit: { [weak self] in
+                self?.menu.cancelTracking()
+                self?.onQuit()
+            }
+        )
+        let hostingView = InteractiveHostingView(rootView: dashboard)
+        hostingView.frame = NSRect(x: 0, y: 0, width: 228, height: 160)
+        customItem.view = hostingView
+        menu.addItem(customItem)
     }
 
     private func installStatusItem() {
         guard statusItem == nil else { return }
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem = item
+        item.menu = menu
+
         guard let button = item.button else { return }
-        button.target = self
-        button.action = #selector(statusItemClicked(_:))
-        button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         button.toolTip = "MacPulse — CPU and Memory"
         updatePresentation(snapshot: monitor.snapshot)
     }
@@ -125,26 +94,10 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
         )
         button.setAccessibilityLabel("MacPulse: CPU \(cpuText), RAM \(memText)")
     }
+}
 
-    @objc private func statusItemClicked(_ sender: NSStatusBarButton) {
-        if NSApp.currentEvent?.type == .rightMouseUp {
-            showContextMenu(from: sender)
-        } else {
-            showPopover()
-        }
+private final class InteractiveHostingView<Content: View>: NSHostingView<Content> {
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
+        return true
     }
-
-    private func showContextMenu(from button: NSStatusBarButton) {
-        let menu = NSMenu()
-        let open = NSMenuItem(title: "Open MacPulse", action: #selector(openFromMenu), keyEquivalent: "")
-        let quit = NSMenuItem(title: "Quit MacPulse", action: #selector(quitFromMenu), keyEquivalent: "q")
-        [open, quit].forEach { $0.target = self }
-        menu.addItem(open)
-        menu.addItem(.separator())
-        menu.addItem(quit)
-        menu.popUp(positioning: nil, at: NSPoint(x: 0, y: button.bounds.height + 4), in: button)
-    }
-
-    @objc private func openFromMenu() { showPopover() }
-    @objc private func quitFromMenu() { onQuit() }
 }
