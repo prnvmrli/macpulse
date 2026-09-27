@@ -3,9 +3,13 @@ import SwiftUI
 struct MetricRingView: View {
     let title: String
     let percentage: Double
-    let tint: Color
+    var tint: Color? = nil
     var diameter: CGFloat = 64
     var strokeWidth: CGFloat? = nil
+
+    private var activeTint: Color {
+        tint ?? Color.reactiveMetric(for: percentage)
+    }
 
     private var actualStroke: CGFloat {
         strokeWidth ?? max(diameter * 0.11, 4.5)
@@ -25,7 +29,7 @@ struct MetricRingView: View {
             Circle()
                 .trim(from: 0, to: fraction)
                 .stroke(
-                    tint,
+                    activeTint,
                     style: StrokeStyle(lineWidth: actualStroke, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))

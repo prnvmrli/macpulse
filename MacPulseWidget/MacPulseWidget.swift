@@ -78,9 +78,6 @@ struct MacPulseWidgetView: View {
     let entry: MacPulseEntry
     @Environment(\.widgetFamily) private var family
 
-    private let cpuTint = Color.accentColor
-    private let memTint = Color.purple
-
     var body: some View {
         Group {
             if family == .systemSmall {
@@ -99,13 +96,11 @@ struct MacPulseWidgetView: View {
                 WidgetRing(
                     title: "CPU",
                     percentage: entry.snapshot.cpu.usage,
-                    tint: cpuTint,
                     diameter: 56
                 )
                 WidgetRing(
                     title: "RAM",
                     percentage: entry.snapshot.memory.usagePercent,
-                    tint: memTint,
                     diameter: 56
                 )
             }
@@ -124,13 +119,11 @@ struct MacPulseWidgetView: View {
                 WidgetRing(
                     title: "CPU",
                     percentage: entry.snapshot.cpu.usage,
-                    tint: cpuTint,
                     diameter: 80
                 )
                 WidgetRing(
                     title: "MEMORY",
                     percentage: entry.snapshot.memory.usagePercent,
-                    tint: memTint,
                     diameter: 80
                 )
             }
@@ -147,8 +140,12 @@ struct MacPulseWidgetView: View {
 private struct WidgetRing: View {
     let title: String
     let percentage: Double
-    let tint: Color
+    var tint: Color? = nil
     var diameter: CGFloat = 58
+
+    private var activeTint: Color {
+        tint ?? Color.reactiveMetric(for: percentage)
+    }
 
     private var strokeWidth: CGFloat {
         max(diameter * 0.11, 4.5)
@@ -168,7 +165,7 @@ private struct WidgetRing: View {
             Circle()
                 .trim(from: 0, to: fraction)
                 .stroke(
-                    tint,
+                    activeTint,
                     style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
