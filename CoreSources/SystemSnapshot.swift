@@ -26,6 +26,13 @@ struct MemorySnapshot: Codable, Equatable {
         return String(format: "%.1f / %.0f GB", usedGB, totalGB)
     }
 
+    var formattedCompactGB: String {
+        let gb = 1024.0 * 1024.0 * 1024.0
+        let usedGB = Int(round(Double(usedBytes) / gb))
+        let totalGB = max(Int(round(Double(totalBytes) / gb)), 1)
+        return "\(usedGB)/\(totalGB) GB"
+    }
+
     static let empty = MemorySnapshot(
         usedBytes: 0,
         totalBytes: ProcessInfo.processInfo.physicalMemory

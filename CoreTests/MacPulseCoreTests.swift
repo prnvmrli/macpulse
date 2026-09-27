@@ -15,6 +15,11 @@ final class MacPulseCoreTests: XCTestCase {
 
         XCTAssertEqual(memory.usagePercent, 50.0, accuracy: 0.1)
         XCTAssertEqual(memory.formattedUsedAndTotal, "8.0 / 16 GB")
+        XCTAssertEqual(memory.formattedCompactGB, "8/16 GB")
+
+        let memory13: UInt64 = UInt64(13.2 * Double(1024 * 1024 * 1024))
+        let memSnapshot13 = MemorySnapshot(usedBytes: memory13, totalBytes: total)
+        XCTAssertEqual(memSnapshot13.formattedCompactGB, "13/16 GB")
     }
 
     func testSystemSnapshotStructure() {

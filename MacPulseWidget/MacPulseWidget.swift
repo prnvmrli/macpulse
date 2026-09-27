@@ -94,37 +94,51 @@ struct MacPulseWidgetView: View {
     }
 
     private var smallView: some View {
-        HStack(spacing: 10) {
-            WidgetRing(
-                title: "CPU",
-                percentage: entry.snapshot.cpu.usage,
-                tint: cpuTint,
-                diameter: 58
-            )
-            WidgetRing(
-                title: "MEMORY",
-                percentage: entry.snapshot.memory.usagePercent,
-                tint: memTint,
-                diameter: 58
-            )
+        VStack(spacing: 6) {
+            HStack(spacing: 12) {
+                WidgetRing(
+                    title: "CPU",
+                    percentage: entry.snapshot.cpu.usage,
+                    tint: cpuTint,
+                    diameter: 56
+                )
+                WidgetRing(
+                    title: "RAM",
+                    percentage: entry.snapshot.memory.usagePercent,
+                    tint: memTint,
+                    diameter: 56
+                )
+            }
+
+            Text(entry.snapshot.memory.formattedCompactGB)
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var mediumView: some View {
-        HStack(spacing: 28) {
-            WidgetRing(
-                title: "CPU",
-                percentage: entry.snapshot.cpu.usage,
-                tint: cpuTint,
-                diameter: 82
-            )
-            WidgetRing(
-                title: "MEMORY",
-                percentage: entry.snapshot.memory.usagePercent,
-                tint: memTint,
-                diameter: 82
-            )
+        VStack(spacing: 8) {
+            HStack(spacing: 36) {
+                WidgetRing(
+                    title: "CPU",
+                    percentage: entry.snapshot.cpu.usage,
+                    tint: cpuTint,
+                    diameter: 80
+                )
+                WidgetRing(
+                    title: "MEMORY",
+                    percentage: entry.snapshot.memory.usagePercent,
+                    tint: memTint,
+                    diameter: 80
+                )
+            }
+
+            Text(entry.snapshot.memory.formattedCompactGB)
+                .font(.system(size: 12, weight: .semibold, design: .rounded))
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
