@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.2
+
+- Added modern minimal vector logo branding across all macOS `AppIcon` sizes.
+- Added brand logo to README header and streamlined release installation documentation.
+- Optimized GitHub Actions CI triggers to eliminate duplicate workflow runs on release tags.
+
 ## 2.2.1
 
 - Aligned used memory calculation with macOS Activity Monitor's formula (`(internal pages - purgeable) + wired + compressed`).

@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use MacPulse in a study, benchmark, demonstration, or derived project, cite the software and state the exact version and hardware configuration."
 title: "MacPulse"
 type: software
-version: 2.2.1
+version: 2.2.2
 date-released: 2026-09-27
 license: MIT
 repository-code: "https://github.com/vluncasu/macpulse"
