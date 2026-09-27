@@ -7,6 +7,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var workspaceObservers: [NSObjectProtocol] = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        let bundleID = Bundle.main.bundleIdentifier ?? "com.macpulse.local.MacPulse"
+        let runningApps = NSRunningApplication.runningApplications(withBundleIdentifier: bundleID)
+        let otherInstances = runningApps.filter { $0.processIdentifier != ProcessInfo.processInfo.processIdentifier }
+        if !otherInstances.isEmpty {
+            otherInstances.first?.activate(options: .activateIgnoringOtherApps)
+            NSApp.terminate(nil)
+            return
+        }
+
         NSApp.setActivationPolicy(.accessory)
 
         statusController = StatusItemController(
