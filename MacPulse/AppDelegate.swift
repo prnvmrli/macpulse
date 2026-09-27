@@ -1,13 +1,9 @@
 import AppKit
-import Combine
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    private let settings = SettingsStore()
-    private let launchAtLogin = LaunchAtLoginController()
-    private lazy var monitor = MonitorStore(settings: settings)
+    private lazy var monitor = MonitorStore()
     private var statusController: StatusItemController?
-    private var settingsWindowController: SettingsWindowController?
     private var workspaceObservers: [NSObjectProtocol] = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -15,15 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         statusController = StatusItemController(
             monitor: monitor,
-            settings: settings,
-            onOpenSettings: { [weak self] in self?.showSettings() },
             onQuit: { NSApp.terminate(nil) }
-        )
-
-        settingsWindowController = SettingsWindowController(
-            settings: settings,
-            monitor: monitor,
-            launchAtLogin: launchAtLogin
         )
 
         observePowerEvents()
@@ -37,21 +25,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        statusController?.showPopover(forceVisible: true)
+        statusController?.showPopover()
         return true
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        guard let url = urls.first else { return }
-        switch url.host?.lowercased() {
-        case "settings": showSettings()
-        default: statusController?.showPopover(forceVisible: true)
-        }
-    }
-
-    private func showSettings() {
-        launchAtLogin.refresh()
-        settingsWindowController?.present()
+        statusController?.showPopover()
     }
 
     private func observePowerEvents() {

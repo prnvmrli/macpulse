@@ -17,35 +17,23 @@ final class CPUReader {
     }
 
     func read() -> CPUSnapshot {
-        guard let current = currentTicks() else { return snapshotWithCurrentLoad(lastSnapshot) }
+        guard let current = currentTicks() else { return lastSnapshot }
         defer { previous = current }
-        guard let previous else {
-            return snapshotWithCurrentLoad(lastSnapshot)
-        }
+        guard let previous else { return lastSnapshot }
 
         let userDelta = delta(current.user, previous.user)
         let systemDelta = delta(current.system, previous.system)
         let idleDelta = delta(current.idle, previous.idle)
         let niceDelta = delta(current.nice, previous.nice)
         let totalDelta = userDelta + systemDelta + idleDelta + niceDelta
-        guard totalDelta > 0 else { return snapshotWithCurrentLoad(lastSnapshot) }
+        guard totalDelta > 0 else { return lastSnapshot }
 
-        let userPercent = percent(userDelta + niceDelta, totalDelta)
-        let systemPercent = percent(systemDelta, totalDelta)
-        let idlePercent = percent(idleDelta, totalDelta)
-        let usage = clamp(userPercent + systemPercent)
-        let loads = loadAverages()
+        let activeDelta = userDelta + systemDelta + niceDelta
+        let usage = clamp(Double(activeDelta) / Double(totalDelta) * 100)
 
         let snapshot = CPUSnapshot(
             usage: usage,
-            rawUsage: usage,
-            userUsage: userPercent,
-            systemUsage: systemPercent,
-            idleUsage: idlePercent,
-            logicalCoreCount: ProcessInfo.processInfo.processorCount,
-            loadAverage1Minute: loads.0,
-            loadAverage5Minutes: loads.1,
-            loadAverage15Minutes: loads.2
+            logicalCoreCount: ProcessInfo.processInfo.processorCount
         )
         lastSnapshot = snapshot
         return snapshot
@@ -74,29 +62,6 @@ final class CPUReader {
 
     private func delta(_ current: UInt64, _ previous: UInt64) -> UInt64 {
         current >= previous ? current - previous : 0
-    }
-
-    private func percent(_ part: UInt64, _ total: UInt64) -> Double {
-        guard total > 0 else { return 0 }
-        return clamp(Double(part) / Double(total) * 100)
-    }
-
-    private func loadAverages() -> (Double, Double, Double) {
-        var values = [Double](repeating: 0, count: 3)
-        let count = values.withUnsafeMutableBufferPointer { buffer in
-            getloadavg(buffer.baseAddress, 3)
-        }
-        guard count == 3 else { return (0, 0, 0) }
-        return (max(values[0], 0), max(values[1], 0), max(values[2], 0))
-    }
-
-    private func snapshotWithCurrentLoad(_ snapshot: CPUSnapshot) -> CPUSnapshot {
-        let loads = loadAverages()
-        var copy = snapshot
-        copy.loadAverage1Minute = loads.0
-        copy.loadAverage5Minutes = loads.1
-        copy.loadAverage15Minutes = loads.2
-        return copy
     }
 
     private func clamp(_ value: Double) -> Double {

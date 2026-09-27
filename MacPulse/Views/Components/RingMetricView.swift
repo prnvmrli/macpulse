@@ -1,78 +1,53 @@
 import SwiftUI
 
-struct RingMetricView: View {
+struct MetricRingView: View {
     let title: String
-    let value: Double?
-    let subtitle: String
+    let percentage: Double
     let tint: Color
-    var diameter: CGFloat = 132
+    var diameter: CGFloat = 64
+    var strokeWidth: CGFloat? = nil
 
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    private var actualStroke: CGFloat {
+        strokeWidth ?? max(diameter * 0.11, 4.5)
+    }
 
-    private var normalizedValue: Double {
-        min(max((value ?? 0) / 100, 0), 1)
+    private var fraction: Double {
+        min(max(percentage / 100.0, 0.0), 1.0)
     }
 
     var body: some View {
-        VStack(spacing: 9) {
-            ZStack {
-                Circle()
-                    .stroke(.primary.opacity(0.075), lineWidth: 12)
+        ZStack {
+            // Background track
+            Circle()
+                .stroke(Color.primary.opacity(0.08), lineWidth: actualStroke)
 
-                Circle()
-                    .trim(from: 0, to: normalizedValue)
-                    .stroke(
-                        AngularGradient(
-                            colors: [tint.opacity(0.7), tint],
-                            center: .center,
-                            startAngle: .degrees(-90),
-                            endAngle: .degrees(270)
-                        ),
-                        style: StrokeStyle(lineWidth: 12, lineCap: .round)
-                    )
-                    .rotationEffect(.degrees(-90))
-                    .shadow(color: tint.opacity(0.16), radius: 6, y: 2)
+            // Progress arc
+            Circle()
+                .trim(from: 0, to: fraction)
+                .stroke(
+                    tint,
+                    style: StrokeStyle(lineWidth: actualStroke, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
 
-                Circle()
-                    .fill(.primary.opacity(0.025))
-                    .padding(18)
+            // Percentage and Title inside ring
+            VStack(spacing: 1) {
+                Text("\(Int(percentage.rounded()))%")
+                    .font(.system(size: diameter * 0.25, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
 
-                VStack(spacing: 1) {
-                    Text(value.map { "\(Int($0.rounded()))" } ?? "—")
-                        .font(.system(size: 34, weight: .semibold, design: .rounded))
-                        .monospacedDigit()
-                        .contentTransitionIfAvailable()
-                    Text(value == nil ? "unavailable" : "%")
-                        .font(.caption2.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .frame(width: diameter, height: diameter)
-            .animation(reduceMotion ? nil : .easeOut(duration: 0.65), value: normalizedValue)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(title)
-            .accessibilityValue(value.map { "\(Int($0.rounded())) percent" } ?? "Unavailable")
-
-            VStack(spacing: 2) {
                 Text(title)
-                    .font(.subheadline.weight(.semibold))
-                Text(subtitle)
-                    .font(.caption2)
+                    .font(.system(size: max(diameter * 0.12, 8), weight: .semibold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
-                    .frame(maxWidth: diameter + 30)
             }
+            .padding(actualStroke)
         }
-    }
-}
-
-private extension View {
-    @ViewBuilder
-    func contentTransitionIfAvailable() -> some View {
-        if #available(macOS 14.0, *) {
-            contentTransition(.numericText())
-        } else {
-            self
-        }
+        .frame(width: diameter, height: diameter)
+        .animation(.easeOut(duration: 0.5), value: fraction)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(title) \(Int(percentage.rounded())) percent")
     }
 }

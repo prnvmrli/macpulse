@@ -6,26 +6,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A98E2D30F4C74B2BAED65107 /* Shared/SamplingPolicy.swift in build */ = {isa = PBXBuildFile; fileRef = 7B41E69A2DFC4D3B8A57C201 /* Shared/SamplingPolicy.swift */; };
 		F6A2D8C984E1437BA9C0D122 /* MacPulse/PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D5B71F09A8E24C39B6610F7E /* MacPulse/PrivacyInfo.xcprivacy */; };
-		005A96307883F6CDC170EC4F /* MacPulseTests/MetricSmootherTests.swift in build */ = {isa = PBXBuildFile; fileRef = 6A4A4B295AF5601D790ADA0D /* MacPulseTests/MetricSmootherTests.swift */; };
 		AA0000000000000000000001 /* Shared/AppConstants.swift in tests */ = {isa = PBXBuildFile; fileRef = 5ABAC3C2E4AE2EB22486B25A /* Shared/AppConstants.swift */; };
-		AA0000000000000000000002 /* Shared/SamplingPolicy.swift in tests */ = {isa = PBXBuildFile; fileRef = 7B41E69A2DFC4D3B8A57C201 /* Shared/SamplingPolicy.swift */; };
 		AA0000000000000000000003 /* Shared/SystemSnapshot.swift in tests */ = {isa = PBXBuildFile; fileRef = 668E9B5931908D5804CC535B /* Shared/SystemSnapshot.swift */; };
-		AA0000000000000000000004 /* MacPulse/Metrics/GPUStatisticsParser.swift in tests */ = {isa = PBXBuildFile; fileRef = B0D650932B7E0E89730DF6F9 /* MacPulse/Metrics/GPUStatisticsParser.swift */; };
-		AA0000000000000000000005 /* MacPulse/Metrics/MetricSmoother.swift in tests */ = {isa = PBXBuildFile; fileRef = 931DEA726A0B9AF724433541 /* MacPulse/Metrics/MetricSmoother.swift */; };
 		0486FD23AC9AA61106472C11 /* MacPulse/Metrics/CPUReader.swift in build */ = {isa = PBXBuildFile; fileRef = 994ED08679C77D0A39A89244 /* MacPulse/Metrics/CPUReader.swift */; };
 		07BEE0FDE705C9811829B928 /* Shared/SystemSnapshot.swift in build */ = {isa = PBXBuildFile; fileRef = 668E9B5931908D5804CC535B /* Shared/SystemSnapshot.swift */; };
 		0FAB85F65E9783C48855EEA9 /* XCTest.framework in build */ = {isa = PBXBuildFile; fileRef = DE2A62A36BAEB440F6B6BC7F /* XCTest.framework */; };
-		14A3B7916EC4D2E3D9E0843F /* MacPulse/Metrics/MachineReader.swift in build */ = {isa = PBXBuildFile; fileRef = 1EA417FD3CF18D224F775F40 /* MacPulse/Metrics/MachineReader.swift */; };
-		1C3D1C86410AD088B0AE3834 /* MacPulse/Metrics/GPUReader.swift in build */ = {isa = PBXBuildFile; fileRef = 80026383D37E94995AB5FB61 /* MacPulse/Metrics/GPUReader.swift */; };
-		1C7EFBAEA67513FF7E996C4C /* MacPulse/SettingsStore.swift in build */ = {isa = PBXBuildFile; fileRef = CD4458B5197877117C4C79DB /* MacPulse/SettingsStore.swift */; };
 		36039A9DB87B2B5DA4A3609D /* ServiceManagement.framework in build */ = {isa = PBXBuildFile; fileRef = 6CA5BE48E896A7E6353A5605 /* ServiceManagement.framework */; };
 		36F11CCC3C4702127E97FEBD /* MacPulse/MonitorStore.swift in build */ = {isa = PBXBuildFile; fileRef = 8114CE9E06AFFE6FED5D01A5 /* MacPulse/MonitorStore.swift */; };
-		4AB18B44BFA8CCC4135B8F74 /* MacPulse/Services/SettingsWindowController.swift in build */ = {isa = PBXBuildFile; fileRef = 50BCB2086D7CA58DD2E9ADEE /* MacPulse/Services/SettingsWindowController.swift */; };
 		4EE00C5F0BB2A3B818406575 /* Shared/AppConstants.swift in build */ = {isa = PBXBuildFile; fileRef = 5ABAC3C2E4AE2EB22486B25A /* Shared/AppConstants.swift */; };
 		5627961D821A685028DE4E1E /* WidgetKit.framework in build */ = {isa = PBXBuildFile; fileRef = A41AD69E92589FD0CEE0B2DB /* WidgetKit.framework */; };
-		62085626B7AD830287AF2AD1 /* MacPulse/Views/SettingsView.swift in build */ = {isa = PBXBuildFile; fileRef = 6EC4D1FA77B0AAC212F42819 /* MacPulse/Views/SettingsView.swift */; };
 		629C8E8A7FD3E936A23DDE89 /* MacPulse/Metrics/MemoryReader.swift in build */ = {isa = PBXBuildFile; fileRef = 4A34D4200ABC6D453539BC38 /* MacPulse/Metrics/MemoryReader.swift */; };
 		68C095AA2CEBF71D6FA9490F /* MacPulseWidget/MacPulseWidget.swift in build */ = {isa = PBXBuildFile; fileRef = A8B72E0CAD9F10DB1CF4F5FD /* MacPulseWidget/MacPulseWidget.swift */; };
 		764E85AD19A44B74194217E9 /* AppKit.framework in build */ = {isa = PBXBuildFile; fileRef = 26AFBE155EA129055325774B /* AppKit.framework */; };
@@ -38,24 +28,16 @@
 		A2394586D7198EF2A67699A5 /* MacPulse/Views/DashboardView.swift in build */ = {isa = PBXBuildFile; fileRef = 1F194399B87E239AE83269F8 /* MacPulse/Views/DashboardView.swift */; };
 		AA475080A3D201BC9CE37301 /* MacPulseWidget.appex in build */ = {isa = PBXBuildFile; fileRef = F231F6FE549E641636571AA6 /* MacPulseWidget.appex */; settings = { ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AC8F837FD252CCD418F38E93 /* WidgetKit.framework in build */ = {isa = PBXBuildFile; fileRef = A41AD69E92589FD0CEE0B2DB /* WidgetKit.framework */; };
-		AFEB89EB682F2995EDF83DA4 /* MacPulse/Services/LaunchAtLoginController.swift in build */ = {isa = PBXBuildFile; fileRef = 4BD467713B3F5742DDC6C70C /* MacPulse/Services/LaunchAtLoginController.swift */; };
-		B3290CA6FAF08E6F17ED8F11 /* MacPulse/Metrics/MetricSmoother.swift in build */ = {isa = PBXBuildFile; fileRef = 931DEA726A0B9AF724433541 /* MacPulse/Metrics/MetricSmoother.swift */; };
 		B37EBC7D78A96DFB335E1BA5 /* MacPulse/Assets.xcassets in build */ = {isa = PBXBuildFile; fileRef = B5EDA0BE7602239404FC2847 /* MacPulse/Assets.xcassets */; };
 		B6F68AE9FC4F6B048DD10631 /* SwiftUI.framework in build */ = {isa = PBXBuildFile; fileRef = E67FCF49C0C6F255316445A8 /* SwiftUI.framework */; };
 		D0DA331D4042962ED3AEC26E /* Shared/SharedSnapshotStore.swift in build */ = {isa = PBXBuildFile; fileRef = 6B163525F7D5DA666F0BD548 /* Shared/SharedSnapshotStore.swift */; };
-		D1B303A08404A7FA8CA5813E /* MacPulse/Views/Components/MetricDetailView.swift in build */ = {isa = PBXBuildFile; fileRef = D3D43109C7BB63FBACAC98F7 /* MacPulse/Views/Components/MetricDetailView.swift */; };
-		D1DC8950DD7A475DAEDC50F7 /* MacPulseTests/GPUStatisticsParserTests.swift in build */ = {isa = PBXBuildFile; fileRef = EBC085A1729E6B90E2778C86 /* MacPulseTests/GPUStatisticsParserTests.swift */; };
-		D2F5AFAEC6A344356E777D6D /* MacPulse/Views/Components/SparklineView.swift in build */ = {isa = PBXBuildFile; fileRef = 37D2A99A14943B15B889F56A /* MacPulse/Views/Components/SparklineView.swift */; };
+		D1DC8950DD7A475DAEDC50F7 /* MacPulseTests/MacPulseTests.swift in build */ = {isa = PBXBuildFile; fileRef = EBC085A1729E6B90E2778C86 /* MacPulseTests/MacPulseTests.swift */; };
 		D5E0B1ACA85339659F9039EA /* IOKit.framework in build */ = {isa = PBXBuildFile; fileRef = 7713E1C2D892D86DA6CF15D4 /* IOKit.framework */; };
-		E3169855F60324EA37121941 /* MacPulse/Metrics/GPUStatisticsParser.swift in build */ = {isa = PBXBuildFile; fileRef = B0D650932B7E0E89730DF6F9 /* MacPulse/Metrics/GPUStatisticsParser.swift */; };
 		E333FC956603E1F1AC2BF11B /* Shared/SharedSnapshotStore.swift in build */ = {isa = PBXBuildFile; fileRef = 6B163525F7D5DA666F0BD548 /* Shared/SharedSnapshotStore.swift */; };
 		E80323B3E0526379C86FD31B /* SwiftUI.framework in build */ = {isa = PBXBuildFile; fileRef = E67FCF49C0C6F255316445A8 /* SwiftUI.framework */; };
 		EE32572C19AAC3DD8BC2F392 /* Shared/SystemSnapshot.swift in build */ = {isa = PBXBuildFile; fileRef = 668E9B5931908D5804CC535B /* Shared/SystemSnapshot.swift */; };
 		DFA001000000000000000001 /* CPUReader.swift in widget build */ = {isa = PBXBuildFile; fileRef = 994ED08679C77D0A39A89244 /* CPUReader.swift */; };
 		DFA001000000000000000002 /* MemoryReader.swift in widget build */ = {isa = PBXBuildFile; fileRef = 4A34D4200ABC6D453539BC38 /* MemoryReader.swift */; };
-		DFA001000000000000000003 /* MachineReader.swift in widget build */ = {isa = PBXBuildFile; fileRef = 1EA417FD3CF18D224F775F40 /* MachineReader.swift */; };
-		DFA001000000000000000004 /* GPUReader.swift in widget build */ = {isa = PBXBuildFile; fileRef = 80026383D37E94995AB5FB61 /* GPUReader.swift */; };
-		DFA001000000000000000005 /* GPUStatisticsParser.swift in widget build */ = {isa = PBXBuildFile; fileRef = B0D650932B7E0E89730DF6F9 /* GPUStatisticsParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +50,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7B41E69A2DFC4D3B8A57C201 /* SamplingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplingPolicy.swift; sourceTree = "<group>"; };
 		D5B71F09A8E24C39B6610F7E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8BCD5BC4CDFDF0918087C782 /* MacPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F231F6FE549E641636571AA6 /* MacPulseWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MacPulseWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,23 +71,12 @@
 		513EBA3E56944BB85DF8E6FE /* MacPulse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MacPulse.entitlements; sourceTree = "<group>"; };
 		6F9AE0445D150047771C3CCE /* MacPulseMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacPulseMain.swift; sourceTree = "<group>"; };
 		994ED08679C77D0A39A89244 /* CPUReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUReader.swift; sourceTree = "<group>"; };
-		80026383D37E94995AB5FB61 /* GPUReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUReader.swift; sourceTree = "<group>"; };
-		B0D650932B7E0E89730DF6F9 /* GPUStatisticsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUStatisticsParser.swift; sourceTree = "<group>"; };
-		1EA417FD3CF18D224F775F40 /* MachineReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineReader.swift; sourceTree = "<group>"; };
 		4A34D4200ABC6D453539BC38 /* MemoryReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryReader.swift; sourceTree = "<group>"; };
-		931DEA726A0B9AF724433541 /* MetricSmoother.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricSmoother.swift; sourceTree = "<group>"; };
 		8114CE9E06AFFE6FED5D01A5 /* MonitorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorStore.swift; sourceTree = "<group>"; };
-		4BD467713B3F5742DDC6C70C /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
-		50BCB2086D7CA58DD2E9ADEE /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		C2D94DEDDFD8AFD0692FAE8D /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
-		CD4458B5197877117C4C79DB /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
-		D3D43109C7BB63FBACAC98F7 /* MetricDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDetailView.swift; sourceTree = "<group>"; };
 		093B98455D138233DF3E46D3 /* RingMetricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingMetricView.swift; sourceTree = "<group>"; };
-		37D2A99A14943B15B889F56A /* SparklineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparklineView.swift; sourceTree = "<group>"; };
 		1F194399B87E239AE83269F8 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		6EC4D1FA77B0AAC212F42819 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		EBC085A1729E6B90E2778C86 /* GPUStatisticsParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUStatisticsParserTests.swift; sourceTree = "<group>"; };
-		6A4A4B295AF5601D790ADA0D /* MetricSmootherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricSmootherTests.swift; sourceTree = "<group>"; };
+		EBC085A1729E6B90E2778C86 /* MacPulseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacPulseTests.swift; sourceTree = "<group>"; };
 		C6D59B0C6151A618976094FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08B88AC7296A090787588AC5 /* MacPulseWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MacPulseWidget.entitlements; sourceTree = "<group>"; };
 		A8B72E0CAD9F10DB1CF4F5FD /* MacPulseWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacPulseWidget.swift; sourceTree = "<group>"; };
@@ -163,35 +133,24 @@
 			5ABAC3C2E4AE2EB22486B25A /* AppConstants.swift */,
 			6B163525F7D5DA666F0BD548 /* SharedSnapshotStore.swift */,
 			668E9B5931908D5804CC535B /* SystemSnapshot.swift */,
-			7B41E69A2DFC4D3B8A57C201 /* SamplingPolicy.swift */,
 		); path = Shared; sourceTree = "<group>"; };
 		E1BCC9A41E66CB962E3AA39A /* Metrics */ = {isa = PBXGroup; children = (
 			994ED08679C77D0A39A89244 /* CPUReader.swift */,
-			80026383D37E94995AB5FB61 /* GPUReader.swift */,
-			B0D650932B7E0E89730DF6F9 /* GPUStatisticsParser.swift */,
-			1EA417FD3CF18D224F775F40 /* MachineReader.swift */,
 			4A34D4200ABC6D453539BC38 /* MemoryReader.swift */,
-			931DEA726A0B9AF724433541 /* MetricSmoother.swift */,
 		); path = Metrics; sourceTree = "<group>"; };
 		CF8103D677B5245E50F32976 /* Services */ = {isa = PBXGroup; children = (
-			4BD467713B3F5742DDC6C70C /* LaunchAtLoginController.swift */,
-			50BCB2086D7CA58DD2E9ADEE /* SettingsWindowController.swift */,
 			C2D94DEDDFD8AFD0692FAE8D /* StatusItemController.swift */,
 		); path = Services; sourceTree = "<group>"; };
 		CEB237CF8043BD68A0F5BA60 /* Components */ = {isa = PBXGroup; children = (
-			D3D43109C7BB63FBACAC98F7 /* MetricDetailView.swift */,
 			093B98455D138233DF3E46D3 /* RingMetricView.swift */,
-			37D2A99A14943B15B889F56A /* SparklineView.swift */,
 		); path = Components; sourceTree = "<group>"; };
 		70833B5C55E5291733BB3D88 /* Views */ = {isa = PBXGroup; children = (
 			1F194399B87E239AE83269F8 /* DashboardView.swift */,
-			6EC4D1FA77B0AAC212F42819 /* SettingsView.swift */,
 			CEB237CF8043BD68A0F5BA60 /* Components */,
 		); path = Views; sourceTree = "<group>"; };
 		E50290A24C49A459B43487C5 /* MacPulse */ = {isa = PBXGroup; children = (
 			6F9AE0445D150047771C3CCE /* MacPulseMain.swift */,
 			9DB4B549159ACD78025E2959 /* AppDelegate.swift */,
-			CD4458B5197877117C4C79DB /* SettingsStore.swift */,
 			8114CE9E06AFFE6FED5D01A5 /* MonitorStore.swift */,
 			E70D81D92695E61C743CACCB /* Info.plist */,
 			513EBA3E56944BB85DF8E6FE /* MacPulse.entitlements */,
@@ -207,8 +166,7 @@
 			A8B72E0CAD9F10DB1CF4F5FD /* MacPulseWidget.swift */,
 		); path = MacPulseWidget; sourceTree = "<group>"; };
 		68DE481A39400A49757EB7B7 /* MacPulseTests */ = {isa = PBXGroup; children = (
-			EBC085A1729E6B90E2778C86 /* GPUStatisticsParserTests.swift */,
-			6A4A4B295AF5601D790ADA0D /* MetricSmootherTests.swift */,
+			EBC085A1729E6B90E2778C86 /* MacPulseTests.swift */,
 		); path = MacPulseTests; sourceTree = "<group>"; };
 		630A3E12678C4AB4BD0D2C24 /* docs */ = {isa = PBXGroup; children = (
 			2D1ADFFE9945D57833A57EC1 /* ARCHITECTURE.md */,
@@ -292,26 +250,15 @@
 		971ED9D05B25DB6C4D7680D4 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 			7BCDDD73CE2666D7A13CCD75,
 			98DCA4EB95B2EFC0FA48E16B,
-			1C7EFBAEA67513FF7E996C4C,
 			36F11CCC3C4702127E97FEBD,
 			0486FD23AC9AA61106472C11,
 			629C8E8A7FD3E936A23DDE89,
-			14A3B7916EC4D2E3D9E0843F,
-			B3290CA6FAF08E6F17ED8F11,
-			E3169855F60324EA37121941,
-			1C3D1C86410AD088B0AE3834,
-			AFEB89EB682F2995EDF83DA4,
-			4AB18B44BFA8CCC4135B8F74,
 			7F9AB4E0DE855A73E1204A22,
 			A2394586D7198EF2A67699A5,
-			62085626B7AD830287AF2AD1,
 			8D7C68FAA7E892611EF0FC65,
-			D2F5AFAEC6A344356E777D6D,
-			D1B303A08404A7FA8CA5813E,
 			9075D72062846A8BB4B7540C,
 			EE32572C19AAC3DD8BC2F392,
 			D0DA331D4042962ED3AEC26E,
-			A98E2D30F4C74B2BAED65107 /* Shared/SamplingPolicy.swift in build */,
 		); runOnlyForDeploymentPostprocessing = 0; };
 		2D81737A052BBAAD15A6D3C1 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 			68C095AA2CEBF71D6FA9490F,
@@ -320,18 +267,9 @@
 			E333FC956603E1F1AC2BF11B,
 			DFA001000000000000000001,
 			DFA001000000000000000002,
-			DFA001000000000000000003,
-			DFA001000000000000000004,
-			DFA001000000000000000005,
 		); runOnlyForDeploymentPostprocessing = 0; };
 		6E431EB0650617AA1756B320 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
-			AA0000000000000000000001 /* Shared/AppConstants.swift in tests */,
-			AA0000000000000000000002 /* Shared/SamplingPolicy.swift in tests */,
-			AA0000000000000000000003 /* Shared/SystemSnapshot.swift in tests */,
-			AA0000000000000000000004 /* MacPulse/Metrics/GPUStatisticsParser.swift in tests */,
-			AA0000000000000000000005 /* MacPulse/Metrics/MetricSmoother.swift in tests */,
 			D1DC8950DD7A475DAEDC50F7,
-			005A96307883F6CDC170EC4F,
 		); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
@@ -540,6 +478,7 @@
 			SWIFT_EMIT_LOC_STRINGS = YES;
 		}; name = Release; };
 		FCB48D8F88BCDB0ED9FADFD7 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {
+			BUNDLE_LOADER = "$(TEST_HOST)";
 			CODE_SIGNING_ALLOWED = NO;
 			CODE_SIGNING_REQUIRED = NO;
 			CURRENT_PROJECT_VERSION = 212;
@@ -548,8 +487,10 @@
 			PRODUCT_BUNDLE_IDENTIFIER = com.macpulse.local.MacPulseTests;
 			PRODUCT_NAME = "$(TARGET_NAME)";
 			SWIFT_EMIT_LOC_STRINGS = NO;
+			TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacPulse.app/Contents/MacOS/MacPulse";
 		}; name = Debug; };
 		942EEBBACD6C88CAE7F29B29 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {
+			BUNDLE_LOADER = "$(TEST_HOST)";
 			CODE_SIGNING_ALLOWED = NO;
 			CODE_SIGNING_REQUIRED = NO;
 			CURRENT_PROJECT_VERSION = 212;
@@ -558,6 +499,7 @@
 			PRODUCT_BUNDLE_IDENTIFIER = com.macpulse.local.MacPulseTests;
 			PRODUCT_NAME = "$(TARGET_NAME)";
 			SWIFT_EMIT_LOC_STRINGS = NO;
+			TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacPulse.app/Contents/MacOS/MacPulse";
 		}; name = Release; };
 /* End XCBuildConfiguration section */
 
