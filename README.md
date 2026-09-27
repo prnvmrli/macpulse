@@ -5,7 +5,6 @@ MacPulse is a free, open-source **CPU and GPU monitor for macOS**. It shows proc
 It is a lightweight Swift and SwiftUI system monitor for Apple Silicon Macs, Intel Macs, and compatible accelerated Hackintosh systems. MacPulse has no analytics, no advertisements, no account, and no background network requests.
 
 <p align="center">
-  <a href="https://github.com/vluncasu/macpulse/releases/download/v2.1.2/MacPulse-2.1.2.dmg"><strong>Download MacPulse 2.1.2 for macOS (.dmg)</strong></a><br>
   <sub>Universal application for Apple Silicon and Intel Macs · macOS 13 or newer</sub>
 </p>
 
@@ -13,11 +12,11 @@ It is a lightweight Swift and SwiftUI system monitor for Apple Silicon Macs, Int
 
 ### 1. Download
 
-Click **[Download MacPulse 2.1.2 (.dmg)](https://github.com/vluncasu/macpulse/releases/download/v2.1.2/MacPulse-2.1.2.dmg)**. If the download does not start, open the [v2.1.2 release page](https://github.com/vluncasu/macpulse/releases/tag/v2.1.2), expand **Assets**, and select `MacPulse-2.1.2.dmg`.
+Download the latest `MacPulse.dmg` from the GitHub Releases tab under **Assets**.
 
 ### 2. Install
 
-1. Open the downloaded `MacPulse-2.1.2.dmg` file.
+1. Open the downloaded `MacPulse.dmg` file.
 2. Drag `MacPulse.app` onto the **Applications** shortcut.
 3. Open the **Applications** folder in Finder.
 
@@ -30,10 +29,10 @@ This release is built without a paid Apple Developer certificate. macOS may bloc
 3. Choose **Open** again in the confirmation dialog.
 4. Look for the MacPulse gauge icon in the menu bar.
 
-You only need the Control-click procedure on the first launch. For additional confidence, compare the downloaded file with the SHA-256 checksum on the [release page](https://github.com/vluncasu/macpulse/releases/tag/v2.1.2).
+You only need the Control-click procedure on the first launch. For additional confidence, compare the downloaded file with the SHA-256 checksum provided on the release page.
 
 > [!IMPORTANT]
-> Installable Mac binaries are published as **GitHub Release assets**, not under Packages. [GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages) provides registries for formats such as npm, Maven, NuGet, RubyGems, and containers; it is not a generic DMG download area. The verified MacPulse DMG is attached directly to the release above.
+> Installable Mac binaries are published as **GitHub Release assets**, not under Packages. [GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages) provides registries for formats such as npm, Maven, NuGet, RubyGems, and containers; it is not a generic DMG download area. The verified MacPulse DMG is attached directly to the release.
 
 ## Use MacPulse
 
@@ -80,7 +79,7 @@ To create your own DMG, double-click `Build and Create DMG.command`. The result 
 ### Terminal method
 
 ```bash
-git clone https://github.com/vluncasu/macpulse.git
+git clone https://github.com/prnvmrli/macpulse.git
 cd macpulse
 ./scripts/doctor.sh
 ./scripts/build-local.sh
