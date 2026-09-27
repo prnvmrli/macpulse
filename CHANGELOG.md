@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.1
+
+- Aligned used memory calculation with macOS Activity Monitor's formula (`(internal pages - purgeable) + wired + compressed`).
+- Fixed discrepancy in menu bar and desktop widgets where inactive background application memory was previously excluded as reclaimable cache.
+
 ## 2.2.0
 
 - Migrated status item to native `NSMenu` and `NSHostingView`, fixing outside-click dismissal to prevent unwanted desktop-reveal on macOS Sonoma and Sequoia.
