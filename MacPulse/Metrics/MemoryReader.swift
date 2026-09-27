@@ -20,12 +20,12 @@ struct MemoryReader {
         }
 
         let pageSize = UInt64(vm_kernel_page_size)
-        let free = (UInt64(statistics.free_count) + UInt64(statistics.speculative_count)) * pageSize
-        let inactive = UInt64(statistics.inactive_count) * pageSize
-        let purgeable = UInt64(statistics.purgeable_count) * pageSize
-        let cached = min(total, inactive + purgeable)
-        let reclaimable = min(total, free + cached)
-        let used = total > reclaimable ? total - reclaimable : 0
+        let internalPages = UInt64(statistics.internal_page_count)
+        let purgeablePages = UInt64(statistics.purgeable_count)
+        let appMemory = internalPages > purgeablePages ? (internalPages - purgeablePages) * pageSize : 0
+        let wiredMemory = UInt64(statistics.wire_count) * pageSize
+        let compressedMemory = UInt64(statistics.compressor_page_count) * pageSize
+        let used = min(total, appMemory + wiredMemory + compressedMemory)
 
         return MemorySnapshot(usedBytes: used, totalBytes: total)
     }
