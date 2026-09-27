@@ -108,8 +108,8 @@ final class MonitorStore: ObservableObject {
         SharedSnapshotStore.save(payload)
 
         let now = Date()
-        let minimumGap: TimeInterval = 120
-        let heartbeat: TimeInterval = 15 * 60
+        let minimumGap: TimeInterval = 10
+        let heartbeat: TimeInterval = 30
         let significant = widgetChangeIsSignificant(from: lastWidgetReloadSnapshot, to: snapshot)
         let shouldReload = forceWidgetReload
             || now.timeIntervalSince(lastWidgetReload) >= heartbeat
@@ -123,8 +123,9 @@ final class MonitorStore: ObservableObject {
 
     private func widgetChangeIsSignificant(from old: SystemSnapshot, to new: SystemSnapshot) -> Bool {
         if old.timestamp == .distantPast { return true }
-        if abs(old.cpu.usage - new.cpu.usage) >= 15 { return true }
-        if abs(old.memory.usagePercent - new.memory.usagePercent) >= 15 { return true }
+        if old.memory.formattedCompactGB != new.memory.formattedCompactGB { return true }
+        if abs(old.cpu.usage - new.cpu.usage) >= 5 { return true }
+        if abs(old.memory.usagePercent - new.memory.usagePercent) >= 3 { return true }
         return false
     }
 }

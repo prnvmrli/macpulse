@@ -47,7 +47,5 @@ struct DashboardView: View {
         }
         .padding(14)
         .frame(width: 228)
-        .onAppear { monitor.setDashboardVisible(true) }
-        .onDisappear { monitor.setDashboardVisible(false) }
     }
 }

@@ -25,12 +25,6 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
         popover.animates = true
         popover.contentSize = NSSize(width: 228, height: 160)
         popover.delegate = self
-        popover.contentViewController = NSHostingController(
-            rootView: DashboardView(
-                monitor: monitor,
-                onQuit: onQuit
-            )
-        )
 
         installStatusItem()
 
@@ -48,13 +42,22 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
         if popover.isShown {
             popover.performClose(nil)
         } else {
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+            if popover.contentViewController == nil {
+                popover.contentViewController = NSHostingController(
+                    rootView: DashboardView(
+                        monitor: monitor,
+                        onQuit: onQuit
+                    )
+                )
+            }
             monitor.setDashboardVisible(true)
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
     }
 
     func popoverDidClose(_ notification: Notification) {
         monitor.setDashboardVisible(false)
+        popover.contentViewController = nil
     }
 
     private func installStatusItem() {

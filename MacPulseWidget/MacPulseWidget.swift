@@ -57,7 +57,7 @@ struct MacPulseProvider: TimelineProvider {
         Task {
             let snapshot = await WidgetMetricSampler.sample()
             let entry = MacPulseEntry(date: .now, snapshot: snapshot)
-            let nextRefresh = Date().addingTimeInterval(15 * 60)
+            let nextRefresh = Date().addingTimeInterval(30)
             completion(Timeline(entries: [entry], policy: .after(nextRefresh)))
         }
     }
