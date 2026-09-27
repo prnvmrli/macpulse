@@ -91,47 +91,56 @@ struct MacPulseWidgetView: View {
     }
 
     private var smallView: some View {
-        VStack(spacing: 6) {
-            HStack(spacing: 12) {
+        HStack(spacing: 12) {
+            VStack(spacing: 9) {
                 WidgetRing(
                     title: "CPU",
                     percentage: entry.snapshot.cpu.usage,
                     diameter: 56
                 )
+                // Spacer matching RAM subtitle height to align ring centers
+                Text(" ")
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+            }
+
+            VStack(spacing: 9) {
                 WidgetRing(
                     title: "RAM",
                     percentage: entry.snapshot.memory.usagePercent,
                     diameter: 56
                 )
+                Text(entry.snapshot.memory.formattedCompactGB)
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
             }
-
-            Text(entry.snapshot.memory.formattedCompactGB)
-                .font(.system(size: 11, weight: .semibold, design: .rounded))
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var mediumView: some View {
-        VStack(spacing: 8) {
-            HStack(spacing: 36) {
+        HStack(spacing: 36) {
+            VStack(spacing: 12) {
                 WidgetRing(
                     title: "CPU",
                     percentage: entry.snapshot.cpu.usage,
                     diameter: 80
                 )
+                Text(" ")
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+            }
+
+            VStack(spacing: 12) {
                 WidgetRing(
                     title: "MEMORY",
                     percentage: entry.snapshot.memory.usagePercent,
                     diameter: 80
                 )
+                Text(entry.snapshot.memory.formattedCompactGB)
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
             }
-
-            Text(entry.snapshot.memory.formattedCompactGB)
-                .font(.system(size: 12, weight: .semibold, design: .rounded))
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

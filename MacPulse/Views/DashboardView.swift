@@ -7,23 +7,29 @@ struct DashboardView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            HStack(spacing: 24) {
-                MetricRingView(
-                    title: "CPU",
-                    percentage: monitor.snapshot.cpu.usage,
-                    diameter: 82
-                )
-                MetricRingView(
-                    title: "MEMORY",
-                    percentage: monitor.snapshot.memory.usagePercent,
-                    diameter: 82
-                )
-            }
+            HStack(alignment: .top, spacing: 20) {
+                VStack(spacing: 10) {
+                    MetricRingView(
+                        title: "CPU",
+                        percentage: monitor.snapshot.cpu.usage,
+                        diameter: 82
+                    )
+                    Text(" ")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                }
 
-            Text(monitor.snapshot.memory.formattedUsedAndTotal)
-                .font(.system(size: 11, weight: .medium, design: .rounded))
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
+                VStack(spacing: 10) {
+                    MetricRingView(
+                        title: "MEMORY",
+                        percentage: monitor.snapshot.memory.usagePercent,
+                        diameter: 82
+                    )
+                    Text(monitor.snapshot.memory.formattedUsedAndTotal)
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .monospacedDigit()
+                        .foregroundStyle(.secondary)
+                }
+            }
 
             Divider()
                 .opacity(0.3)
