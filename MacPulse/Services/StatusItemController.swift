@@ -9,6 +9,7 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
 
     private let popover = NSPopover()
     private var statusItem: NSStatusItem?
+    private var eventMonitor: Any?
     private var cancellables = Set<AnyCancellable>()
     private var lastTitleUpdate = Date.distantPast
     private var lastRenderedTitle = ""
@@ -51,13 +52,45 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
                 )
             }
             monitor.setDashboardVisible(true)
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+
+            let anchorRect = positioningRect(for: button)
+            popover.show(relativeTo: anchorRect, of: button, preferredEdge: .minY)
+
+            NSApp.activate(ignoringOtherApps: true)
+            popover.contentViewController?.view.window?.makeKey()
+
+            startEventMonitor()
         }
     }
 
     func popoverDidClose(_ notification: Notification) {
+        stopEventMonitor()
         monitor.setDashboardVisible(false)
         popover.contentViewController = nil
+    }
+
+    private func positioningRect(for button: NSStatusBarButton) -> NSRect {
+        var rect = button.bounds
+        let windowHeight = button.window?.frame.height ?? button.bounds.height
+        let verticalPadding = max(0, (windowHeight - button.bounds.height) / 2)
+        // Offset downwards by the vertical padding plus a 2pt margin so it cleanly clears the menu bar
+        rect.origin.y += verticalPadding + 2
+        return rect
+    }
+
+    private func startEventMonitor() {
+        guard eventMonitor == nil else { return }
+        eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
+            guard let self, self.popover.isShown else { return }
+            self.popover.performClose(nil)
+        }
+    }
+
+    private func stopEventMonitor() {
+        if let monitor = eventMonitor {
+            NSEvent.removeMonitor(monitor)
+            eventMonitor = nil
+        }
     }
 
     private func installStatusItem() {
