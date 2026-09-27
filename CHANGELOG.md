@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.2.0
+
+- Migrated status item to native `NSMenu` and `NSHostingView`, fixing outside-click dismissal to prevent unwanted desktop-reveal on macOS Sonoma and Sequoia.
+- Synchronized menu bar and desktop widget metrics with zero performance overhead.
+- Redesigned dual-ring menu bar interface with compact memory usage display.
+- Added reactive metric ring colors transitioning dynamically from green to orange to red based on load.
+- Aligned memory breakdown layout cleanly under the Memory ring with improved typography and spacing.
+- Enforced single-instance application lock using BSD file locks to prevent duplicate processes.
+- Added automated GitHub Actions release workflow for universal macOS builds and DMG distribution.
+- Hardened Mach kernel metrics sampling.
+
 ## 2.1.2
 
 - Added a complete drag-to-install DMG workflow.
