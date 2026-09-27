@@ -518,3 +518,27 @@ MacPulse.xcodeproj/        Xcode project
 MacPulse is distributed under the MIT License. See [LICENSE](LICENSE).
 
 Project maintained by [TerabitLab](https://terabitlab.com/). Source, issues, and releases are hosted in this repository.
+
+---
+
+## 14. Modifications in this Fork (@prnvmrli)
+
+This fork transforms MacPulse into an ultra-lightweight, native macOS utility strictly dedicated to **CPU and Memory** monitoring with zero bloat.
+
+### Surfaces & Design
+- **Desktop WidgetKit Widget**:
+  - Rebuilt for `.systemSmall` and `.systemMedium` with **two circular progress rings** (CPU and RAM).
+  - Shows bold percentage in the center of each ring and compact memory breakdown (e.g. `13/16 GB`) below the rings.
+- **Menu Bar Surface**:
+  - Live compact menu bar text (`CPU 23%  RAM 52%`).
+  - Click-to-open popover with two circular gauges, memory allocation, and a clean Quit button.
+- **Minimal Footprint**:
+  - Purged all GPU polling, fans, thermals, battery/power stats, machine profiling, settings UI, and background launch daemons.
+  - Steady-state resource usage: **< 1.0% CPU** and **~48 MB RAM**.
+
+### Security & Stability Hardening
+- **Fixed Mach 32-bit Integer Overflow**: In `MemoryReader.swift`, Mach `vm_statistics64` page counts previously summed as 32-bit integers, which overflows `UInt32.max` on high-RAM unified memory Macs and crashes the app. Remediated with 64-bit casting prior to arithmetic.
+- **Guarded CPU Delta Calculations**: In `CPUReader.swift`, guarded against tick underflow and division-by-zero (`NaN`) during wake-from-sleep or rapid sampling.
+- **Eliminated Raw IOKit Leaks**: Purged raw Mach master ports and IOKit driver queries, eliminating memory leak surfaces and raw pointer manipulation.
+- **Unified Background Pipeline**: Single background publisher (`MonitorStore`) feeding immutable `SystemSnapshot` payloads to both the menu bar and WidgetKit AppGroup.
+
