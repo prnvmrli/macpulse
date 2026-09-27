@@ -87,7 +87,7 @@ git push origin v2.2.0
 
 ## 4. GitHub Actions Release Automation
 
-Once tag `v*` is pushed to GitHub, [`.github/workflows/release.yml`](../.github/workflows/release.yml) automatically runs on a macOS runner:
+Once tag `v*` is pushed to GitHub, [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) automatically runs on a macOS runner:
 
 1. **Portable Test & Source Validation**: Executes `swift test` and `./scripts/validate-source.sh`.
 2. **Universal Build**: Compiles both `arm64` (Apple Silicon) and `x86_64` (Intel) slices via `./scripts/build-local.sh`.
@@ -98,7 +98,7 @@ Once tag `v*` is pushed to GitHub, [`.github/workflows/release.yml`](../.github/
 ### Manual Workflow Dispatch
 You can also trigger a release manually without immediately pushing a Git tag:
 1. Go to the repository on GitHub.
-2. Navigate to **Actions** → **Release**.
+2. Navigate to **Actions** → **CI & Release**.
 3. Click **Run workflow**, optionally specifying:
    - Target version tag (e.g. `v2.2.0`)
    - Draft flag
